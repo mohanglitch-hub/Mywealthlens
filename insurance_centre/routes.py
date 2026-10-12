@@ -638,23 +638,6 @@ def preview_document(doc_id):
         as_attachment=False,  # inline — opens in browser
         download_name=doc.original_name,
     )
-
-
-@insurance_bp.route("/search")
-@login_required
-def search():
-    query = request.args.get("q", "").strip()
-    results = services.search_policies(current_user.id, query) if query else []
-
-    return render_template(
-        "insurance_centre/search.html",
-        query=query,
-        results=results,
-        format_inr=format_inr,
-        format_date=format_date,
-    )
-
-
 # ── API — types for dynamic dropdown ─────────────────────────────────────────
 
 @insurance_bp.route("/api/types")
